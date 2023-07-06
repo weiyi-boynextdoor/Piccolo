@@ -205,8 +205,6 @@ namespace Piccolo
         RHIImage*        m_depth_image = new VulkanImage();
         VkDeviceMemory m_depth_image_memory {nullptr};
 
-        std::vector<VkFramebuffer> m_swapchain_framebuffers;
-
         // asset allocator use VMA library
         VmaAllocator m_assets_allocator;
 
