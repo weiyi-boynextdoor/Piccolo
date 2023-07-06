@@ -1688,30 +1688,7 @@ namespace Piccolo
             return false;
         }
     }
-
-    bool VulkanRHI::createSemaphore(const RHISemaphoreCreateInfo* pCreateInfo, RHISemaphore* &pSemaphore)
-    {
-        VkSemaphoreCreateInfo create_info{};
-        create_info.sType = (VkStructureType)pCreateInfo->sType;
-        create_info.pNext = pCreateInfo->pNext;
-        create_info.flags = (VkSemaphoreCreateFlags)pCreateInfo->flags;
-
-        pSemaphore = new VulkanSemaphore();
-        VkSemaphore vk_semaphore;
-        VkResult result = vkCreateSemaphore(m_device, &create_info, nullptr, &vk_semaphore);
-        ((VulkanSemaphore*)pSemaphore)->setResource(vk_semaphore);
-
-        if (result == VK_SUCCESS)
-        {
-            return RHI_SUCCESS;
-        }
-        else
-        {
-            LOG_ERROR("vkCreateSemaphore failed!");
-            return false;
-        }
-    }
-
+    
     bool VulkanRHI::waitForFencesPFN(uint32_t fenceCount, RHIFence* const* pFences, RHIBool32 waitAll, uint64_t timeout)
     {
         //fence
